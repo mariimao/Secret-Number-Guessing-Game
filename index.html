@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Number Guessing Game</title>
+
+    <!-- Custom Font: Pangolin -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Pangolin&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Back Button -->
+        <button id="back" onclick="backToMenu()" style="display: none;">Back</button>
+
+        <!-- Instructions Button -->
+        <button id="instructions" onclick="openInstructions(false)" style="display: none;">Instructions</button>
+
+        <!-- Instructions Popup -->
+        <div id="instructionsPopup" style="display: none;">
+            <button id="closeInstructions" onclick="closeInstructions()" style="font-size: 2em;">&times;</button>
+            <h3>Instructions</h3>
+            <p>Welcome to the Secret Number Guessing Game! Here's how to play:</p>
+            <h4>Objective</h4>
+            <p>You and the computer need to guess each others' secret 3-digit number (no repeating digits, no zeros) in the fewest attempts (max 7 attempts).</p>
+            <h4>How to Play</h4>
+            <ul>
+                <li>Each player chooses a secret three-digit number.</li>
+                <li>Players take turns guessing each other's number.</li>
+                <li>After each guess, feedback is given:</li>
+                <ul>
+                    <li>"+" for each correct digit in the correct position.</li>
+                    <li>"–" for each correct digit in the wrong position.</li>
+                </ul>
+                <li>The winner is the player who guesses the opponent's number in the fewest attempts.</li>
+            </ul>
+            <h4>Example</h4>
+            <p>If the secret number is 589 and the guess is 982, the feedback would be "+-" because:</p>
+            <ul>
+                <li>8 is in the correct position.</li>
+                <li>9 is correct but in the wrong position.</li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Image -->
+        <img id="title-cover" src="titlecover.png" alt="Number Guessing Game" style="width: 100%; max-width: 300px; margin: 0 auto;">
+        
+        <!-- Title -->
+        <h1 id="title">Secret Number Guessing Game</h1>
+
+        <!-- Play Button -->
+        <button id="play" onclick="loadGame()">▶ PLAY</button>
+
+        <!-- Game Section -->
+        <div id="game" style="display: none;">
+            
+            <!-- Chat Window -->
+            <div id="chatWindow"></div>
+
+            <!-- User's Turn -->
+            <div id="userTurn" style="display: flex; flex-direction: column;">
+                <h2>Your Turn</h2>
+                <div class="inputContainer">
+                    <input id="userGuess" type="text" placeholder="Enter your guess">
+                    <button id="submitUserGuess" onclick="submitUserGuess()">Submit</button>
+                </div>                
+            </div>
+
+            <!-- Computer's Turn -->
+            <div id="computerTurn" style="display: none;">
+                <h2>Computer's Turn</h2>
+                <div class="inputContainer">
+                    <input id="feedbackToComputer" type="text" placeholder="Enter your feedback">
+                    <button id="submitFeedback" onclick="submitComputerFeedback()">Submit</button>
+                </div>
+            </div>
+
+            <!-- Invalid Input Message -->
+            <p id="invalidInputMessage"></p>
+
+            <!-- End Game Section -->
+            <div id="endGame" style="display: none;">
+                <h2>Game Over</h2>
+                <p id="endGameMessage"></p>
+                <button id="playAgain" onclick="location.reload()">Play Again?</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <!-- Note for Best Screen -->
+        <p style="color: #606060; font-size: 0.8em;">(best experienced on a desktop or laptop computer)</p>
+    </footer>
+
+    <!-- Script -->
+    <script src="myScript.js"></script>
+</body>
+</html>
